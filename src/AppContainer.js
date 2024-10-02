@@ -4,7 +4,7 @@ import { Provider, useSelector } from 'react-redux';
 import App from './App';
 import store from './redux/Store';
 import theme from "./styles/theme/index"
-import { BrowserRouter as Router } from 'react-router-dom';
+import { HashRouter as Router, } from 'react-router-dom';
 import { ThemeProvider } from '@mui/material/styles';
 
 const AppContainer = () => {
