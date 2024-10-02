@@ -14,9 +14,8 @@ const AppContainer = () => {
   return (
     <Provider store={store}>
        <ThemeProvider theme={theme}>
-        <Router>
+       
       <App />
-      </Router>
       </ThemeProvider>
     </Provider>
   );

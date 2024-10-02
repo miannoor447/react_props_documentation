@@ -99,11 +99,7 @@ const App = () => {
 
   return (
 
-    <Routes>
-    {/* Redirect "/" to "/documentation" */}
-    <Route path="/" element={<Navigate to="/documentation" />} />
-    <Route path="/documentation" element={<CollapsibleDocPage Data={Data} config={config} appearing={appearance} />} />
-</Routes>
+   <CollapsibleDocPage Data={Data} config={config} appearing={appearance} />
 
   );
 };
