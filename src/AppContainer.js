@@ -9,11 +9,7 @@ const AppContainer = () => {
 
 
   return (
-    
-
-      <App />
-     
-
+      <App /> 
   );
 };
 
