@@ -23,7 +23,7 @@ const App = () => {
           },
         },
       },
-      {
+      { 
         label: 'Delete',
         onClick: (itemId) => { },
         permission: 'delete_user',
@@ -39,25 +39,68 @@ const App = () => {
         },
       }
     ],
-    multiStepActions: {
-      steps: [
-        {
-          label: 'Step 1',
-          validation: (stepData) => { },
-          onClick: (stepData) => { },
+    features: {
+      export: {
+        enabled: true,
+        permission: 'export_data',
+        onExport: (exportType) => {  },
+        exportOptions: {
+          formats: ['CSV', 'PDF'],
+          includeHeaders: true,
         },
-        {
-          label: 'Step 2',
-          validation: (stepData) => { },
-          onClick: (stepData) => { },
+        onSuccess: () => { alert('Export successful!') },
+        onFailure: (error) => { alert(`Export failed: ${error.message}`) }
+      },
+      filter: {
+        enabled: true,
+        permission: 'filter_data',
+        onFilter: (filterParams) => {  },
+        filterOptions: {
+          filterBy: ['status', 'category'],
+          statusOptions: ['active', 'inactive'],
         }
-      ],
-      finalSubmit: {
-        validation: (formData) => { },
-        onSubmit: (formData) => { },
-      }
-    }
+      },
+      sort: {
+        enabled: true,
+        permission: 'sort_data',
+        defaultSortField: 'name',
+        defaultSortOrder: 'asc',
+        onSort: (sortBy) => { },
+        multiColumnSort: true,
+      },
+      search: {
+        enabled: true,
+        permission: 'search_data',
+        searchFields: ['name', 'email'],
+        onSearch: (query) => { },
+        onAdvancedSearch: (criteria) => {  },
+      },
+    },
+    pagination: {
+      currentPage: 1,
+      pageSize: 10,
+      totalPages: 20,
+      onPageChange: (newPage) => {  },
+    },
+    batchActions: [
+      {
+        label: 'Bulk Delete',
+        permission: 'bulk_delete',
+        onClick: (selectedItems) => {  },
+        confirmationMessages: {
+          delete: {
+            title: 'Confirm Bulk Delete',
+            message: 'Are you sure you want to delete these items?',
+            buttons: [
+              { label: 'Cancel', action: 'cancel' },
+              { label: 'Delete', action: 'confirm' },
+            ],
+          },
+        },
+      },
+    ],
   };
+  
 
   const config = {
     viewMode: 'list',
@@ -66,9 +109,32 @@ const App = () => {
     stepConfig: {
       currentStep: 0,
       totalSteps: 2,
-    }
+    },
+    features: [
+      { 
+        name: 'export', 
+        enabled: false, 
+        permission: 'export_users' 
+      },
+      { 
+        name: 'filter', 
+        enabled: true, 
+        permission: 'filter_users' 
+      },
+      { 
+        name: 'sort', 
+        enabled: true, 
+        permission: 'sort_users' 
+      },
+      { 
+        name: 'search', 
+        enabled: true, 
+        permission: 'search_users' 
+      }
+    ]
   };
-
+  
+  
   const appearance = {
     containerStyle: {
       backgroundColor: '#333',
@@ -99,7 +165,7 @@ const App = () => {
 
   return (
 
-   <CollapsibleDocPage Data={Data} config={config} appearing={appearance} />
+   <CollapsibleDocPage Data={Data} config={config} appearance={appearance} />
 
   );
 };
