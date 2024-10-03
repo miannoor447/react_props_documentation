@@ -41,8 +41,6 @@ const App = () => {
     ],
     features: {
       export: {
-        enabled: true,
-        permission: 'export_data',
         onExport: (exportType) => {  },
         exportOptions: {
           formats: ['CSV', 'PDF'],
@@ -52,8 +50,6 @@ const App = () => {
         onFailure: (error) => { alert(`Export failed: ${error.message}`) }
       },
       filter: {
-        enabled: true,
-        permission: 'filter_data',
         onFilter: (filterParams) => {  },
         filterOptions: {
           filterBy: ['status', 'category'],
@@ -61,16 +57,12 @@ const App = () => {
         }
       },
       sort: {
-        enabled: true,
-        permission: 'sort_data',
         defaultSortField: 'name',
         defaultSortOrder: 'asc',
         onSort: (sortBy) => { },
         multiColumnSort: true,
       },
       search: {
-        enabled: true,
-        permission: 'search_data',
         searchFields: ['name', 'email'],
         onSearch: (query) => { },
         onAdvancedSearch: (criteria) => {  },
