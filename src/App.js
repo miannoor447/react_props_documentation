@@ -2,6 +2,7 @@ import React,{useState} from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import CollapsibleDocPage from './DocumentationPage';
 import { Button, Container, Grid, Typography } from '@mui/material';
+import ComponentSelection from './componentSelection';
 
 const App = () => {
 const [selectedComponent, setSelectedComponent] = useState(null);
@@ -165,7 +166,26 @@ sort:{
   }
 },
   };
-
+  const buttonsData = [
+    {
+      label: 'Listing Component',
+      name:'Listing',
+      background: 'linear-gradient(90deg, #8E2DE2 0%, #4A00E0 100%)',
+      onClick: () => setSelectedComponent("Listing"),
+    },
+    {
+      label: 'Graph Component',
+      name:'Graph',
+      background: 'linear-gradient(90deg, #43C6AC 0%, #191654 100%)',
+      onClick: () => setSelectedComponent("Graph"),
+    },
+    {
+      label: 'Form Component',
+      name:"Form",
+      background: 'linear-gradient(90deg, #ff9966 0%, #ff5e62 100%)',
+      onClick: () => setSelectedComponent("Form"),
+    },
+  ];
 //   return (
 
 //   //  <CollapsibleDocPage Data={Data} config={config} appearance={appearance} />
@@ -236,120 +256,9 @@ sort:{
 
 return (
  < Grid item xs={12} sm={6} md={4}>
-  <Container 
-    style={{
-      marginTop: '80px', 
-      textAlign: 'center', 
-      background: 'linear-gradient(135deg, #f5f7fa, #c3cfe2)', // Subtle background gradient
-      padding: '40px',
-      borderRadius: '15px'
-    }}
-  >
-    {/* Improved Header Spacing and Style */}
-    <Typography 
-      variant="h4" 
-      gutterBottom
-      style={{
-        background: 'linear-gradient(90deg, #6a11cb 0%, #2575fc 100%)',
-        color: '#fff',
-        padding: '15px 20px',
-        borderRadius: '10px',
-        marginBottom: '40px' // Increased spacing between heading and buttons
-      }}
-    >
-      Select a Component to View Props
-    </Typography>
-
-    <Grid container spacing={4} justifyContent="center">
-      {/* Button for Listing Component */}
-      <Grid item xs={12} sm={6} md={4}>
-        <Button
-          fullWidth
-          style={{
-            background: 'linear-gradient(90deg, #8E2DE2 0%, #4A00E0 100%)', // Softer gradient
-            color: '#fff',
-            padding: '20px',
-            borderRadius: '20px', // More rounded corners
-            fontSize: '18px',
-            boxShadow: '0px 6px 16px rgba(0, 0, 0, 0.15)', // Slightly deeper shadow
-            transition: 'transform 0.3s ease, box-shadow 0.3s ease',
-          }}
-          onClick={() => {setSelectedComponent('Listing')}}
-          onMouseOver={(e) => {
-            e.target.style.transform = 'scale(1.05)';
-            e.target.style.boxShadow = '0px 8px 20px rgba(0, 0, 0, 0.25)';
-          }}
-          onMouseOut={(e) => {
-            e.target.style.transform = 'scale(1)';
-            e.target.style.boxShadow = '0px 6px 16px rgba(0, 0, 0, 0.15)';
-          }}
-        >
-          Listing Component
-        </Button>
-      </Grid>
-
-      {/* Button for Graph Component */}
-      <Grid item xs={12} sm={6} md={4}>
-        <Button
-          fullWidth
-          style={{
-            background: 'linear-gradient(90deg, #43C6AC 0%, #191654 100%)',
-            color: '#fff',
-            padding: '20px',
-            borderRadius: '20px',
-            fontSize: '18px',
-            boxShadow: '0px 6px 16px rgba(0, 0, 0, 0.15)',
-            transition: 'transform 0.3s ease, box-shadow 0.3s ease',
-          }}
-          onClick={() => {setSelectedComponent('Graph')}}
-          onMouseOver={(e) => {
-            e.target.style.transform = 'scale(1.05)';
-            e.target.style.boxShadow = '0px 8px 20px rgba(0, 0, 0, 0.25)';
-          }}
-          onMouseOut={(e) => {
-            e.target.style.transform = 'scale(1)';
-            e.target.style.boxShadow = '0px 6px 16px rgba(0, 0, 0, 0.15)';
-          }}
-        >
-          Graph Component
-        </Button>
-      </Grid>
-
-      {/* Button for Form Component */}
-      <Grid item xs={12} sm={6} md={4}>
-        <Button
-          fullWidth
-          style={{
-            background: 'linear-gradient(90deg, #ff9966 0%, #ff5e62 100%)',
-            color: '#fff',
-            padding: '20px',
-            borderRadius: '20px',
-            fontSize: '18px',
-            boxShadow: '0px 6px 16px rgba(0, 0, 0, 0.15)',
-            transition: 'transform 0.3s ease, box-shadow 0.3s ease',
-          }}
-          onClick={() => {setSelectedComponent('Form')}}
-          onMouseOver={(e) => {
-            e.target.style.transform = 'scale(1.05)';
-            e.target.style.boxShadow = '0px 8px 20px rgba(0, 0, 0, 0.25)';
-          }}
-          onMouseOut={(e) => {
-            e.target.style.transform = 'scale(1)';
-            e.target.style.boxShadow = '0px 6px 16px rgba(0, 0, 0, 0.15)';
-          }}
-        >
-          Form Component
-        </Button>
-      </Grid>
-    </Grid>
-  </Container>
+<ComponentSelection buttonsData={buttonsData} />
  {selectedComponent && <CollapsibleDocPage Data={Data} config={config} appearance={appearance} component={selectedComponent}/>}
 </Grid>
-
-
-
-
-
 );
 };
 

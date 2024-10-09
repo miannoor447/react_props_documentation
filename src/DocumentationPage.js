@@ -127,7 +127,7 @@ const CollapsibleDocPage = ({ component}) => {
         <AccordionDetails>
           <CodeBox>
             <ReactJson
-              src={dataSource.Appearing}
+              src={dataSource.Appearance}
               theme="monokai"
               collapsed={false}
               enableClipboard={false}
