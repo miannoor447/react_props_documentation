@@ -68,7 +68,8 @@ export const list= {
   Config : {
     
     viewMode: {
-      list:true
+      list:true,
+      grid:true
     },
     features: {
       multiStep: true,
